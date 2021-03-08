@@ -2,31 +2,29 @@ package EndtermProject;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.Statement;//importing packages that we will need
 
 
-public class UI {
-    String connectionUrl="jdbc:postgresql://localhost:5432/EndTermProject";
-    Statement statement=null;
+public class UI {//creating a class UI
     private PostgresDB db = new PostgresDB();
-    public void getTicketsList(){
+    public void getTicketsList(){//creating a getTicketsList method to, who could have guessed? Get the list of tickets!
         try {
-            Connection connection=null;
-            ResultSet resultSet=null;
+            Connection connection;
+            ResultSet resultSet;
             connection=db.getConnection();
             String sql = "select * from bus_ticket";
             Statement st = connection.createStatement();
 
-            resultSet= st.executeQuery(sql);
-            while (resultSet.next()) {
+            resultSet= st.executeQuery(sql);//executing query to display the list of tickets
+            while (resultSet.next()) {//ouputting them on the console
                 System.out.println(resultSet.getInt("ticket_id") + " " + resultSet.getString("starting_point") + " " + resultSet.getString("destination") + " " + resultSet.getInt("price"));
             }
         }
         catch (Exception e){
-            System.out.println(e);
+            System.out.println(e);//exception handling when working with connection as something can and will go wrong
         }
     }
-    public void Hello_Message(){
+    public void Hello_Message(){//creating the method to display the list of possible options for user to chose from
         System.out.println();
         System.out.println("Please, choose and option:");
         System.out.println("1 - Buy a ticket");
@@ -35,11 +33,3 @@ public class UI {
         System.out.println("4 - Exit");
     }
 }
-/* Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection(connectionUrl, "postgres", "5550125Qz");
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery("select * from bus_ticket");
-            while (resultSet.next()) {
-                System.out.println(resultSet.getInt("ticket_id") + " " + resultSet.getString("starting_point") + " " + resultSet.getString("destination") + " " + resultSet.getInt("price"));
-            }
- */
