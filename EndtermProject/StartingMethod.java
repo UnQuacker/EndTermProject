@@ -39,6 +39,9 @@ public class StartingMethod {
                 if(option==4){//if the input is 4 from Options class
                     break;//break the loop (exit the program)
                 }
+                else{//if the user inputs any other integer
+                    System.out.println("Input must be an integer from 1 to 4");//remind him that he can only input integers from 1 to 4
+                }
             }
         }
     catch (InputMismatchException a) {//if the user input something other that an integer(let's say "a", the scanner won't be able to read it and the program will throw this exception)
